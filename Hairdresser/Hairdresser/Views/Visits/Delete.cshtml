@@ -1,0 +1,51 @@
+﻿@model Hairdresser.Models.Visit
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Czy na pewno chcesz usunąć tę wizytę?</h3>
+<div>
+    <h4>Visit</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Data
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            Fryzjer
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HairdresserName)
+        </dd>
+        <dt class = "col-sm-2">
+            Klient
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+        <dt class = "col-sm-2">
+            Klient Email
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            Klient Telefon
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientPhone)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index">Powrót do listy</a>
+    </form>
+</div>

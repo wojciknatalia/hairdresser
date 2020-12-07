@@ -1,0 +1,66 @@
+﻿@model Hairdresser.Models.Visit
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Zarezerwuj wizytę!</h4>
+<hr />
+
+<div class="container">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-8">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Date" class="control-label">Data</label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HairdresserName" class="control-label">Nazwisko fryzjera</label>
+                    <input asp-for="HairdresserName" class="form-control" />
+                    <span asp-validation-for="HairdresserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClientName" class="control-label">Imię i nazwisko klienta</label>
+                    <input asp-for="ClientName" class="form-control" />
+                    <span asp-validation-for="ClientName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClientEmail" class="control-label">Email klienta</label>
+                    <input asp-for="ClientEmail" class="form-control" />
+                    <span asp-validation-for="ClientEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ClientPhone" class="control-label">Telefon klienta</label>
+                    <input asp-for="ClientPhone" class="form-control" />
+                    <span asp-validation-for="ClientPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Umów wizytę" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-4">
+            <img class="visit-image" src="~/img/portfolio/portfolio-10.jpg" />
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Lista wizyt</a>
+</div>
+
+<style>
+    .container {
+        width: 80%;
+    }
+
+    .visit-image {
+        max-width: 100%;
+        opacity: 0.8;
+        border-radius: 2rem;
+    }
+</style>
