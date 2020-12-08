@@ -34,7 +34,11 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hairdresser</a>
+                <div class="header-container d-flex align-items-center">
+                    <div class="logo mr-auto">
+                        <h3 class="text-light"><a asp-area="" asp-controller="Home" asp-action="Index"><span>Zakład fryzjerski Grażyna</span></a></h3>
+                    </div>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,10 +46,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" style="visibility:hidden">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" style="visibility:hidden">Privacy</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -119,7 +123,6 @@
 
                         <div class="col-lg-4 col-md-6 footer-newsletter">
                             <h4>Join Our Newsletter</h4>
-                            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
                             <form action="" method="post">
                                 <input type="email" name="email"><input type="submit" value="Subscribe">
                             </form>
