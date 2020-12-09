@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Hairdresser.Data;
 using Hairdresser.Models;
+using System.Security.Claims;
 
 namespace Hairdresser.Controllers
 {
