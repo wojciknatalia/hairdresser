@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Hairdresser.Data;
 using Hairdresser.Models;
@@ -11,6 +12,7 @@ using System.Security.Claims;
 
 namespace Hairdresser.Controllers
 {
+    [Authorize]
     public class VisitsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,7 +25,16 @@ namespace Hairdresser.Controllers
         // GET: Visits
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Visits.ToListAsync());
+            if (User.IsInRole("Administrator"))
+            {
+                return View(await _context.Visits.ToListAsync());
+            }
+            else
+            {
+                var uName = User.Identity.Name;
+                var uVistits = await _context.Visits.Where(i => i.ClientEmail == uName).ToListAsync();
+                return View(uVistits);
+            }
         }
 
         // GET: Visits/Details/5
