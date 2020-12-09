@@ -15,5 +15,7 @@ namespace Hairdresser.Data
             : base(options)
         {
         }
+
+        public DbSet<Hairdresser.Models.Employee> Employee { get; set; }
     }
 }
