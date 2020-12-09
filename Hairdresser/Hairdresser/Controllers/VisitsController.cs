@@ -25,7 +25,16 @@ namespace Hairdresser.Controllers
         // GET: Visits
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Visits.ToListAsync());
+            if (User.IsInRole("Administrator"))
+            {
+                return View(await _context.Visits.ToListAsync());
+            }
+            else
+            {
+                var uName = User.Identity.Name;
+                var uVistits = await _context.Visits.Where(i => i.ClientEmail == uName).ToListAsync();
+                return View(uVistits);
+            }
         }
 
         // GET: Visits/Details/5
