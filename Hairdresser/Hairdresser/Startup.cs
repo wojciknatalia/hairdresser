@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hairdresser.Models;
 
 namespace Hairdresser
 {
@@ -36,6 +37,9 @@ namespace Hairdresser
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.Configure<ReCAPTCHA>(Configuration.GetSection("GoogleReCAPTCHA"));
+
             services.AddControllersWithViews();
 
             services.AddRazorPages();
