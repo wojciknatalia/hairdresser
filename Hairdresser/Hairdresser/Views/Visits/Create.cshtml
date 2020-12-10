@@ -14,12 +14,11 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Date" class="control-label">Data</label>
-                    <input asp-for="Date" class="form-control" />
+                    <input type="datetime-local" asp-for="Date" class="form-control" />
                     <span asp-validation-for="Date" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="HairdresserName" class="control-label">Nazwisko fryzjera</label>
-                    @*<input asp-for="HairdresserName" class="form-control" />*@
                     <select asp-for="HairdresserName" class="form-control" asp-items="@ViewBag.Message"></select>
                     <span asp-validation-for="HairdresserName" class="text-danger"></span>
                 </div>
