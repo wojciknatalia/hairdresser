@@ -11,6 +11,15 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Visits">Wizyty</a>
         </li>
+        @if (User.IsInRole("Administrator"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Employees">Fryzjerzy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Users">Użytkownicy</a>
+            </li>
+        }
         <li class="nav-item">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link text-dark">Wyloguj</button>
