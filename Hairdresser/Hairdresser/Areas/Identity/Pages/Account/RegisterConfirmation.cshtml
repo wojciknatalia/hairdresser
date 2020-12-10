@@ -1,21 +1,45 @@
 ﻿@page
 @model RegisterConfirmationModel
+@using Microsoft.Extensions.Options
+@inject IOptions<Hairdresser.Models.ReCAPTCHA> _keys
 @{
     ViewData["Title"] = "Potwierdzenie rejestracji";
 }
 
 <h1>@ViewData["Title"]</h1>
 @{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-<p>
-    Potwierdź swój Email klikając <a id="confirm-link" href="@Model.EmailConfirmationUrl">TUTAJ</a>
-</p>
-    }
-    else
-    {
-<p>
-        Konieczne potwierdzenie konta. Sprawdź swoją skrzynkę mailową :)
-</p>
-    }
+    <br />
+    <h4>
+        Autoryzuj swój Email poprzez potwierdzenie tożsamości. 
+        To ważne, gdyż botów ostrzyc nie można. 
+        <a id="confirm-link" href="@Model.EmailConfirmationUrl"></a>
+    </h4>
+    <br />
+    <form action="?" method="POST">
+        <center>
+            <div id="recaptcha"></div>
+        </center>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+    <script>
+        var verifyCaptcha = function (response) {
+            let confirm = document.getElementById('confirm-link');
+            window.location.href = confirm.href;
+        }
+    </script>
+
+    <script type="text/javascript">
+        var onloadCallback = function () {
+            grecaptcha.render('recaptcha', {
+                'sitekey': '@_keys.Value.ReCAPTCHA_Site_Key',
+                'callback': verifyCaptcha
+            });
+        };
+    </script>
 }
