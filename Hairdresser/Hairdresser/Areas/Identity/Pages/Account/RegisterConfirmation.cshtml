@@ -7,39 +7,21 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-@{
-    <br />
-    <h4>
-        Autoryzuj swój Email poprzez potwierdzenie tożsamości. 
-        To ważne, gdyż botów ostrzyc nie można. 
-        <a id="confirm-link" href="@Model.EmailConfirmationUrl"></a>
-    </h4>
-    <br />
-    <form action="?" method="POST">
-        <center>
-            <div id="recaptcha"></div>
-        </center>
-    </form>
-}
+<br />
+<h4>
+    Autoryzuj swój Email poprzez potwierdzenie tożsamości. To ważne, gdyż botów ostrzyc nie można.
+</h4>
+
+<br />
+<form method="post">
+    <center>
+        <div class="g-recaptcha" data-sitekey="@_keys.Value.ReCAPTCHA_Site_Key"></div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="btn btn-primary"> Potwierdź </button>
+    </center>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
-
-    <script>
-        var verifyCaptcha = function (response) {
-            let confirm = document.getElementById('confirm-link');
-            window.location.href = confirm.href;
-        }
-    </script>
-
-    <script type="text/javascript">
-        var onloadCallback = function () {
-            grecaptcha.render('recaptcha', {
-                'sitekey': '@_keys.Value.ReCAPTCHA_Site_Key',
-                'callback': verifyCaptcha
-            });
-        };
-    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 }
