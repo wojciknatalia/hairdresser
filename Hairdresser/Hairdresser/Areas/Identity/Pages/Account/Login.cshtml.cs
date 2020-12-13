@@ -42,11 +42,11 @@ namespace Hairdresser.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Adres Email jest wymagany")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Hasło jest wymagane")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -98,7 +98,20 @@ namespace Hairdresser.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+           
+                    if (user == null)
+                    {
+                        ModelState.AddModelError(string.Empty, "Konto " + Input.Email + " nie istnieje");
+                    }
+                    else if(user.EmailConfirmed == false)
+                    {
+                        ModelState.AddModelError(string.Empty, "Konto " + Input.Email + " nie zostało zweryfikowane po rejestracji");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Niepoprawne hasło");
+                    }
                     return Page();
                 }
             }
