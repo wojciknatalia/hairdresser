@@ -58,7 +58,7 @@ namespace Hairdresser.Areas.Identity.Pages.Account
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-            return RedirectToPage("/Account/ConfirmEmail", new { area = "Identity", userId = userId, code = code, returnUrl = "" });
+            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = "" });
         }
     }
 }
